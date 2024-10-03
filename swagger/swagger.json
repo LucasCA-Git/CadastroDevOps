@@ -1,0 +1,203 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Cadastro Simples",
+    "description": "Projeto feito para meus conhecimentos focado em DevOps"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "Cadastro",
+      "description": "Cadastro comum"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Cadastro"],
+        "summary": "Cria um novo usuário",
+        "description": "Endpoint para criar um novo usuário.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "nome"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@example.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "DDD + 1111111"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "securePassword"
+                }
+              },
+              "required": ["name", "email", "phone", "password"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Erro ao criar usuário"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Cadastro"],
+        "summary": "Lista todos os usuários",
+        "description": "Endpoint para obter todos os usuários.",
+        "responses": {
+          "200": {
+            "description": "Lista de usuários",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": ["Cadastro"],
+        "summary": "Obtém um usuário pelo ID",
+        "description": "Endpoint para obter um usuário específico pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Cadastro"],
+        "summary": "Atualiza um usuário existente",
+        "description": "Endpoint para atualizar um usuário.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar usuário"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cadastro"],
+        "summary": "Deleta um usuário",
+        "description": "Endpoint para deletar um usuário pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "nome"
+        },
+        "email": {
+          "type": "string",
+          "example": "email@example.com"
+        },
+        "phone": {
+          "type": "string",
+          "example": "DDD + 1111111"
+        }
+      }
+    }
+  }
+}
