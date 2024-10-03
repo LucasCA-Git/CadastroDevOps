@@ -2,7 +2,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "create-db": "ts-node src/config/create-database.ts"
+    "create-db": "ts-node src/config/create-database.ts",
+    "seed-db": "ts-node dist/teste/addCadastros.js"
   },
   "dependencies": {
     "@types/node": "^22.7.4",
