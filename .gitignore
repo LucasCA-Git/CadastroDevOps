@@ -1,2 +1,3 @@
 /node_modules
 /dist
+/terraform/ec2/.terraform
